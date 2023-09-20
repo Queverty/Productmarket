@@ -1,0 +1,41 @@
+{% extends 'products/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel='stylesheet' href='{% static "products/css/style.css" %}'>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header>Регистрация</header>
+        {% if form.errors or messages %}
+        {% if messages %}
+        {% for mes in messages %}
+        {{ mes }}
+        {% endfor %}
+        {% else %}
+        {{ form.errors }}
+        {% endif %}
+        {% endif %}
+        <form action="{% url 'users:register'%}" method="post">
+            {% csrf_token %}
+            <label for="{{ form.username.if_for_label }}">
+                {{ form.username }}</label>
+            <label for="{{ form.phone.if_for_label }}">
+                {{ form.phone }}</label>
+            <label for="{{ form.email.if_for_label }}">
+                {{ form.email }}</label>
+            <label for="{{ form.password.if_for_label }}">
+                {{ form.password1 }}</label>
+            <label for="{{ form.password1.if_for_label }}">
+                {{ form.password2 }}</label>
+            <button>Зарегестрироваться</button>
+        </form>
+        <div class="signup">
+        <span class="signup">У вас есть аккаунт?
+         <a style="color: #16194f" href="{% url 'users:login' %}">Войти</a>
+        </span>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

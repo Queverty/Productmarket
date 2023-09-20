@@ -1,0 +1,63 @@
+{% extends "products/base.html" %}
+{% block content %}
+{% load static %}
+<link rel='stylesheet' href='{% static "products/css/style_order_create.css" %}'>
+{% if user.is_verified_email %}
+<div class="row">
+    <div class="col-75">
+        <div class="container">
+            <form action="{% url 'orders:create' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-50">
+                        <h3>
+                            <center>Оформление заказа</center>
+                        </h3>
+                        <label for="{{ form.fio.id_for_labe }}"><i class="fa fa-user"></i>ФИО</label>
+                        {{ form.fio }}
+                        <label for="{{ form.email.id_for_labe }}"><i class="fa fa-envelope"></i> Email</label>
+                        {{ form.email }}
+                        <label for="{{ form.addres.id_for_labe }}"><i class="fa fa-address-card-o"></i>Адрес</label>
+                        {{ form.addres }}
+                        <label for="{{ form.city.id_for_labe }}"><i class="fa fa-institution"></i>Город</label>
+                        {{ form.city }}
+                        <div class="row">
+                            <div class="col-50">
+                                <label for="{{ form.country.id_for_labe }}">Страна</label>
+                                {{ form.country }}
+                            </div>
+                            <div class="col-50">
+                                <label for="{{ form.zip_code.id_for_labe }}">Индекс</label>
+                                {{ form.zip_code }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <input type="submit" value="Продолжить оформление заказа" class="btn">
+            </form>
+        </div>
+    </div>
+
+    <div class="col-25">
+        <div class="container">
+            <h4>
+                <center>Корзина</center>
+            </h4>
+            {% for basket in baskets %}
+            <p><a href="{% url 'products' basket.product.id %}">{{ basket.product.name }}</a> <span class="price">{{ basket.product.price }} Руб.</span>
+            </p>
+            <small class="text-muted">{{ basket.quantity }} шт.</small>
+            {% endfor %}
+            <hr>
+            <p>Всего <span class="price" style="color:black"><b>{{ baskets.total_sum }} Руб.</b></span></p>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<h1><center>Для совершения покупок необходимо потдвердить свой аккаунт через email</center></h1>
+
+{% endif %}
+{% endblock %}

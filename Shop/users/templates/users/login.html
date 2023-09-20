@@ -1,0 +1,36 @@
+{% extends 'products/base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href='{% static "products/css/style.css" %}'>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header style="color: #16194f">Авторизация</header>
+        {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+        {% endif %}
+        <form action="{% url 'users:login'%}" method="post">
+            {% csrf_token %}
+            <label for="{{ form.username.if_for_label }}">
+                {{ form.username }}</label>
+            <label for="{{ form.password.if_for_label }}">
+                {{ form.password }}</label>
+            <a href="#" style="color: #16194f">Забыли пароль?</a>
+            <button>Войти</button>
+        </form>
+        <div class="signup">
+        <span class="signup">У вас нет аккаунта?
+         <a style="color: #16194f" href="{% url 'users:register' %}">Зарегистрироваться</a>
+        </span>
+        </div>
+        Войти через:
+        <div class="icons">
+            <div class="icon ghb">
+                <a href="{% provider_login_url 'github' %}"> <i class='bx bxl-github'></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

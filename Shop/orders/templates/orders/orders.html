@@ -1,0 +1,40 @@
+{% extends 'products/base.html' %}
+{% block content %}
+{% load humanize %}
+
+<center>
+<div class="container">
+  <h2 class="mt-5 mb-4">История заказов</h2>
+  {% if object_list %}
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Номер заказа</th>
+          <th>Дата заказа</th>
+          <th>Статус</th>
+          <th>Сумма заказа</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for order in object_list %}
+        <tr>
+          <td>{{order.id}}</td>
+          <td>{{order.created|naturaltime}}</td>
+          <td>{{order.get_status_display}}</td>
+          <td>{{order.basket_hitstory.total_sum}} Руб.</td>
+          <td>
+
+            <a href="{% url 'orders:order_info' order.id %}" class="btn btn-primary btn-sm">Просмотреть детали</a>
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <h4>История заказов пуста</h4>
+  {% endif %}
+</div>
+</center>
+{% endblock %}

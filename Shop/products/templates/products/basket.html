@@ -1,0 +1,84 @@
+{% extends 'products/base.html' %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href='{% static "products/css/stylebasket.css" %}'>
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+    <div class="content">
+        {% if baskets %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="shopping-cart">
+                    <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Товар</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Цена, Руб.</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Количество</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Удалить</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% for basket in baskets %}
+                    <div class="cart-item">
+                        <div class="row">
+                            <div class="col-md-6 my-auto">
+                                    <label class="price">
+                                        <img src="{{basket.product.image.url}}" style="width: 60px; height: 60px">
+                                        {{basket.product.name}}
+                                    </label>
+                            </div>
+                            <div class="col-md-2 my-auto">
+                                <label class="price">{{basket.sum}} </label>
+                            </div>
+                            <div class="col-md-2 col-7 my-auto">
+                                <div class="quantity">
+                                    <div class="input-group">
+                                        <span class="btn btn1"><i class="fa fa-minus"></i></span>
+                                        <input type="text" value="{{basket.quantity}}" class="input-quantity"/>
+                                        <span class="btn btn1"><i class="fa fa-plus"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-5 my-auto">
+                                <div class="remove">
+                                    <a href="{% url 'basket_remove' basket.id %}" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i> Удалить
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="algncenterdiv">
+                        <h4>
+                            Итог - {{total_sum}} Руб.
+                        </h4>
+                        <div class="algncenterdiv">
+                        <a href="{% url 'order:create' %}" class="btn btn-danger btn-sm" >
+                             Оформить заказ
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<center><h4>Корзина пуста</h4></center>
+
+{% endif %}
+</div>
+</div>
+
+{% endblock %}

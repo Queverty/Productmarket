@@ -1,0 +1,37 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="main-content">
+
+    <section class="section-about u-pad-3">
+        <div class="main-title">
+            <h2>Интернет магазин <span>ПродуктМаркет.</span></h2>
+        </div>
+        <center>
+            <div class="search-wrapper">
+                <form action="{% url 'search' %}" method="get" class="d-flex editContent">
+                    <input type="search" placeholder="Введите название продукта" name="q" class="search-box" required="">
+                </form>
+            </div>
+        </center>
+    </section>
+    <section class="section-portfolio u-pad-3">
+        <div class="main-title">
+            <p>Самые популярные товары</p>
+        </div>
+        <div class="portfolios">
+            {% for product in object_list %}
+            <h1 style="color: #16194f">{{product.name}}.<p style="color: #f44e77">{{product.price}} Р.</p><br><a
+                    href="{% url 'products' product.id %}">Просмотреть товар</a></br></h1>
+            <div class="portfolio">
+                <div class="image">
+                    <img src="{{product.image.url}}">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

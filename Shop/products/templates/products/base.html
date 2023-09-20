@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{title}}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='{% static "products/css/styles.css" %}'>
+
+</head>
+<header>
+    <nav class="navigation">
+        <div class="logo">
+            <a href="/"><img src="{% static 'products/img/logo.jpg' %}" alt="Logo"></a>
+        </div>
+        <ul class="mmenuu">
+            {% for category in categories %}
+            <li class="nav-item">
+                <a class="item">{{category.name}}</a>
+                <ul class="ssubmenuu">
+                    {% for subcategory in subcategories %}
+                    {% if subcategory.category == category %}
+                    <li class="nav-item">
+                        <a href="{% url 'categ' subcategory.id %}" class="item" id="{{subcategory.name}}">{{subcategory.name}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="icons">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="{% url 'basket' %}">Корзина</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'users:profile' user.id %}">Личный кабинет</a>
+            </li>
+            {% if user.is_superuser or user.is_staff %}
+            <li class="nav-item">
+                <a href="{% url 'admin:index' %}">Админ панель</a>
+            </li>
+            {% endif %}
+            {% else %}
+            <li class="nav-item">
+                <a href="{% url 'users:login' %}">Войти</a>
+            </li>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+<body>
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'products/base.html' %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href='{% static "products/css/stylesprofile.css" %}'>
+<div class="container">
+    <div class="title">Личный кабинет</div>
+    {% if request.user.id == user.id %}
+    <div class="content">
+        <form action='{% url "users:profile" user.id %} method="post"'>
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Имя</span>
+                    <label type="text" for="{{ form.first_name.id_for_label }}"></label>
+                    {{ form.first_name }}
+                </div>
+                <div class="input-box">
+                    <span class="details">Фамилия</span>
+                    <label type="text" for="{{ form.last_name.id_for_label }}"></label>
+                    {{ form.last_name }}
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <label type="text" for="{{ form.email.id_for_label }}"></label>
+                    {{ form.email }}
+                    {% if user.is_verified_email %}
+                    <div>
+                        <i style="color:green" class="gg-check-o"></i>Почта подтверждена
+                    </div>
+                    {% else %}
+                    <div>
+                        <i style="color:red" class="gg-check-o"></i>Почта не подтверждена
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="input-box">
+                    <span class="details">Номер телефона</span>
+                    <label type="text" for="{{ form.phone.id_for_label }}"></label>
+                    {{ form.phone }}
+                </div>
+                <div class="input-box">
+                    <span class="details">Логин</span>
+                    <label type="text" for="{{ form.username.id_for_label }}"></label>
+                    {{ form.username }}
+                </div>
+            </div>
+<!--            <div class="button">-->
+<!--                <input type="submit" value="Сохарнить">-->
+<!--            </div>-->
+        </form>
+        <center><a href="{% url 'order:order_list' %}">Ваши заказы</a></center>
+        <a href="{% url 'users:logout' %}">Выйти</a>
+    </div>
+    {% else %}
+    Нед доступа
+    {% endif %}
+</div>
+
+{% endblock %}

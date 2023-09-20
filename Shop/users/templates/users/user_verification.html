@@ -1,0 +1,12 @@
+{% load static %}
+<link rel='stylesheet' href='{% static "products/css/style.css" %}'>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header>Регистрация</header>
+        <h3>Поздравляем, вы успешно зарегистрировались!</h3>
+        <div class="signup">
+            <a style="color: #16194f" href="{% url 'users:login' %}">Перейти на авторизацию</a>
+        </div>
+    </div>
+</div>

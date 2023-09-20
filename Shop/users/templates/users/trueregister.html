@@ -1,0 +1,12 @@
+{% extends "products/base.html" %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href='{% static "products/css/style.css" %}'>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header>Регистрация</header>
+        <h3>Теперь вам необходимо подтвердить свой email. Перейдите по ссылке в письме на вашей почте</h3>
+    </div>
+</div>
+{% endblock %}
