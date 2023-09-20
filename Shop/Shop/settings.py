@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -143,11 +143,12 @@ LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 #emailconf
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'pr0ductmarket@yandex.ru'
-EMAIL_HOST_PASSWORD = 'rtmtyqpifgwonrei'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 EMAIL_USE_TLC = False
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -181,6 +182,6 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_QUERY_EMAIL = True
 
 # stripe
-STRIPE_PUBLIC_KEY = 'pk_test_51NrozcIN70GtmgIqJ2OLItXIY6SLnbSh7VDPGaiOhxqV0bIYfiQmSynfgrAcwKxk8qaCCzc8zHy0o8cckTdvDBsf00w2SnmmK7'
-STRIPE_SECRET_KEY = 'sk_test_51NrozcIN70GtmgIqibgIONMciHBSK6FjJYcpSzno7ISdd7agDKALywc4wpvTDfcDoWnDa8uMpuQAEehx8Nb8MFF000KblTj63i'
-STRIPE_WEBHOOK = 'whsec_2de570420c26aa19b6307ab2bac15fecf561732959d29111ce005fe2e4af4cca'
+STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK = config('STRIPE_WEBHOOK')
