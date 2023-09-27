@@ -9,6 +9,7 @@ from django.utils.timezone import now
 from phonenumber_field.modelfields import PhoneNumberField
 from users.models.users.models import User
 
+
 class EmailVerification(models.Model):
 	code = models.UUIDField(unique=True)
 	user = models.ForeignKey(to=User, on_delete=models.CASCADE)

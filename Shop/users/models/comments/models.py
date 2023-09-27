@@ -1,7 +1,8 @@
 from django.db import models
-from users.models.users.models import User
-from products.models.product.models import Product
 from products.models.basemodel.models import BaseModel
+from products.models.product.models import Product
+from users.models.users.models import User
+
 
 class Comment(BaseModel,models.Model):
 	text = models.TextField()

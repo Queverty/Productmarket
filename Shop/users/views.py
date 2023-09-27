@@ -1,12 +1,13 @@
+from common.views import TitleMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import HttpResponseRedirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView
-
-from common.views import TitleMixin
 from users.forms import UserLoginForm, UserProfileForm, UserRegisterForm
 from users.models.users.models import User
 from users.models.usersemailverifications.models import EmailVerification
+from users.services.emailverifaction import EmailVerifactionServices
+
 
 # Create your views here.
 
@@ -34,22 +35,20 @@ class UserProfileView(TitleMixin, UpdateView):
 		return reverse_lazy('users:profile', args=(self.object.id,))
 
 
+
 class EmailVerifactionView(TitleMixin, TemplateView):
 	title = "Подтверждение электронной почты"
 	template_name = "users/user_verification.html"
 
 	def get(self, request, *args, **kwargs):
 		code = kwargs['code']
-		user = User.objects.get(email=kwargs['email'])
-		email_verifications = EmailVerification.objects.filter(user=user, code=code)
-		if email_verifications.exists() and not email_verifications.first().is_expired():
-			user.is_verified_email = True
-			user.save()
+		outcome = EmailVerifactionServices.execute({'code':code})
+		if outcome['user'].is_verified_email:
 			return super(EmailVerifactionView, self).get(request, *args, **kwargs)
 		else:
 			return HttpResponseRedirect(reverse('index'))
 
+class SuccessfulRegistrationView(TitleMixin,TemplateView):
+	template_name = "users/trueregister.html"
+	title = 'Регистрация'
 
-def trueregister(request):
-	context = {"title": "Регистрация"}
-	return render(request, "users/trueregister.html", context)

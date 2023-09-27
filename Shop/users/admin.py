@@ -1,8 +1,8 @@
 from django.contrib import admin
 from products.models.basket.models import Basket
+from users.models.comments.models import Comment
 from users.models.users.models import User
 from users.models.usersemailverifications.models import EmailVerification
-from users.models.comments.models import Comment
 
 # Register your models here.
 

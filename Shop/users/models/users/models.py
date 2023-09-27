@@ -1,7 +1,8 @@
-from django.db import models
-from products.models.basemodel.models import BaseModel
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from products.models.basemodel.models import BaseModel
+
 
 class User(AbstractUser,BaseModel):
 	phone = PhoneNumberField(null=True, blank=True)

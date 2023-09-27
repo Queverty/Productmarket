@@ -1,9 +1,8 @@
+import stripe
+from django.conf import settings
 from django.db import models
 from products.models.basemodel.models import BaseModel
 from products.models.subcategory.models import ProductSubCategory
-import stripe
-from django.conf import settings
-
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

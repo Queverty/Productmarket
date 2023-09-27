@@ -3,12 +3,12 @@ from datetime import timedelta
 
 from django import forms
 from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm,
-									   UserCreationForm)
+                                       UserCreationForm)
 from django.utils.timezone import now
-
+from users.models.comments.models import Comment
 from users.models.users.models import User
 from users.models.usersemailverifications.models import EmailVerification
-from users.models.comments.models import Comment
+
 
 class CommentForm(forms.ModelForm):
 	text = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-box'}))

@@ -31,10 +31,10 @@
                     <div class="cart-item">
                         <div class="row">
                             <div class="col-md-6 my-auto">
-                                    <label class="price">
-                                        <img src="{{basket.product.image.url}}" style="width: 60px; height: 60px">
-                                        {{basket.product.name}}
-                                    </label>
+                                <label class="price">
+                                    <img src="{{basket.product.image.url}}" style="width: 60px; height: 60px">
+                                    {{basket.product.name}}
+                                </label>
                             </div>
                             <div class="col-md-2 my-auto">
                                 <label class="price">{{basket.sum}} </label>
@@ -42,9 +42,10 @@
                             <div class="col-md-2 col-7 my-auto">
                                 <div class="quantity">
                                     <div class="input-group">
-                                        <span class="btn btn1"><i class="fa fa-minus"></i></span>
+                                        <a href="{% url 'basket_reduce' basket.product.id %}"> <span class="btn btn1"><i class="fa fa-minus"></i></span></a>
                                         <input type="text" value="{{basket.quantity}}" class="input-quantity"/>
-                                        <span class="btn btn1"><i class="fa fa-plus"></i></span>
+                                        <a href="{% url 'basket_add' basket.product.id %}"><span class="btn btn1"><i
+                                                class="fa fa-plus"></i></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -63,9 +64,9 @@
                             Итог - {{total_sum}} Руб.
                         </h4>
                         <div class="algncenterdiv">
-                        <a href="{% url 'order:create' %}" class="btn btn-danger btn-sm" >
-                             Оформить заказ
-                        </a>
+                            <a href="{% url 'order:create' %}" class="btn btn-danger btn-sm">
+                                Оформить заказ
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,15 @@
+{% extends "products/base.html" %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href='{% static "products/css/style.css" %}'>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header>Оплата заказа</header>
+        <center><h3>Оплата не прошла, заказ отменен</h3></center>
+        <h2>
+            <center><a href="{% url 'orders:order_list' %}">Перейти в заказы</a></center>
+        </h2>
+    </div>
+</div>
+{% endblock %}
