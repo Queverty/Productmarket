@@ -18,6 +18,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.authtoken import views
+
 from orders.views import stripe_webhook_view
 
 urlpatterns = [
@@ -27,6 +29,8 @@ urlpatterns = [
 				  path('order/', include("orders.urls", namespace='order')),
 				  path('accounts/', include('allauth.urls')),
 				  path('webhook/', stripe_webhook_view, name='stripe_webhook_view'),
+				  path('api/', include("api.urls", namespace='api')),
+				  path('api-token-auth/', views.obtain_auth_token),
 			  ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
