@@ -18,6 +18,7 @@ stripe = "*"
 python-dotenv = "*"
 python-decouple = "*"
 celery = {extras = ["redis"], version = "*"}
+djangorestframework = "*"
 
 [dev-packages]
 
