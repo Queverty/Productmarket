@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 	# my_apps
 	'products',
 	'users',
-	'orders.apps.OrdersConfig',
+	'orders',
+	'api',
 	# django-allauth
 	'allauth',
 	'allauth.account',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 	'allauth.socialaccount.providers.github',
 	# django-rest
 	'rest_framework',
+	'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -192,3 +194,10 @@ STRIPE_WEBHOOK = config('STRIPE_WEBHOOK')
 # celery
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BECKEND = 'redis://127.0.0.1:6379'
+
+# REST
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': [
+		'rest_framework.authentication.TokenAuthentication',
+	]
+}
