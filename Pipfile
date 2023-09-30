@@ -17,6 +17,7 @@ requests = "*"
 stripe = "*"
 python-dotenv = "*"
 python-decouple = "*"
+celery = {extras = ["redis"], version = "*"}
 
 [dev-packages]
 
