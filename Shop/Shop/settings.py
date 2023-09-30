@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 	'allauth.socialaccount',
 	'allauth.socialaccount.providers.vk',
 	'allauth.socialaccount.providers.github',
+	# django-rest
+	'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -145,8 +147,7 @@ LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-#emailconf
+# emailconf
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
@@ -155,7 +156,7 @@ EMAIL_USE_SSL = True
 EMAIL_USE_TLC = False
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = EMAIL_HOST
-#allauth
+# allauth
 AUTHENTICATION_BACKENDS = [
 	'django.contrib.auth.backends.ModelBackend',
 
