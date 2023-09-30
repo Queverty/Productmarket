@@ -1,6 +1,6 @@
 from http import HTTPStatus
+
 import stripe
-from common.views import TitleMixin
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import HttpResponseRedirect
@@ -10,10 +10,12 @@ from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+
+from common.views import TitleMixin
 from orders.forms import OrederForm
 from orders.models import Order
-from orders.services.order_list.queryset import OrderQuerysetService
 from orders.services.order.create import OrderCreateServices
+from orders.services.order_list.queryset import OrderQuerysetService
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

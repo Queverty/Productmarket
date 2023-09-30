@@ -1,7 +1,9 @@
 from django.urls import path
 
-from products.views.basket.views import BasketView, BasketRemoveView, BasketAddView, BasketReduceView
-from products.views.comment_and_serch.views import ProductCommentView, ProductSerchView
+from products.views.basket.views import (BasketAddView, BasketReduceView,
+                                         BasketRemoveView, BasketView)
+from products.views.comment_and_serch.views import (ProductCommentView,
+                                                    ProductSerchView)
 from products.views.products.views import ProductsListView, ShowProdView
 
 urlpatterns = [

@@ -1,9 +1,9 @@
-from service_objects.services import Service
 from django import forms
-from products.models.product.models import Product
-from users.models import User
-from users.models import Comment
 from service_objects.fields import ModelField
+from service_objects.services import Service
+
+from products.models.product.models import Product
+from users.models import Comment, User
 
 
 class CommentCreateService(Service):

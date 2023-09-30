@@ -1,13 +1,13 @@
-from common.views import TitleMixin
 from django.shortcuts import HttpResponseRedirect
 from django.views import View
 from django.views.generic import ListView
+
+from common.views import TitleMixin
 from products.models.product.models import Product
 from products.services.comment.create import CommentCreateService
 from products.services.serch.contextdata import ProductSerchContextDataService
 from products.services.serch.queryset import ProductSerchQuerysetService
 from users.forms import CommentForm
-
 
 # Create your views here.
 

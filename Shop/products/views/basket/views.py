@@ -1,11 +1,11 @@
-from common.views import TitleMixin
 from django.shortcuts import HttpResponseRedirect
 from django.views import View
+from django.views.generic import ListView
+
+from common.views import TitleMixin
 from products.models.basket.models import Basket
 from products.services.basket.add import BasketAddService
 from products.services.basket.list import BasketListService
-from django.views.generic import ListView
-
 from products.services.basket.reduce import BasketReduceService
 from products.services.basket.remove import BasketRemoveService
 

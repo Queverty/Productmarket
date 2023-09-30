@@ -3,8 +3,8 @@ from django import forms
 from django.http import HttpResponse
 from service_objects.services import Service
 
-from Shop import settings
 from orders.models import Order
+from Shop import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 class WebHookServices(Service):

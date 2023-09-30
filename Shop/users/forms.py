@@ -5,11 +5,11 @@ from django import forms
 from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm,
                                        UserCreationForm)
 from django.utils.timezone import now
+
 from users.models.comments.models import Comment
 from users.models.users.models import User
 from users.models.usersemailverifications.models import EmailVerification
 from users.tasks import send_email_verification
-
 
 
 class CommentForm(forms.ModelForm):

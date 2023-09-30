@@ -1,8 +1,9 @@
-from common.views import TitleMixin
 from django.views.generic import DetailView, ListView
+
+from common.views import TitleMixin
 from products.models.product.models import Product
-from products.services.product.queryset import ProductQuerysetService
 from products.services.product.contextdata import ProductContextDataService
+from products.services.product.queryset import ProductQuerysetService
 
 # Create your views here.
 

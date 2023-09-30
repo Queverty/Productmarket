@@ -19,6 +19,7 @@ python-dotenv = "*"
 python-decouple = "*"
 celery = {extras = ["redis"], version = "*"}
 djangorestframework = "*"
+flake8 = "*"
 
 [dev-packages]
 

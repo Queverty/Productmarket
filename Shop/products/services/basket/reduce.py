@@ -1,6 +1,7 @@
+from django import forms
 from service_objects.fields import ModelField
 from service_objects.services import Service
-from django import forms
+
 from products.models.basket.models import Basket
 from products.models.product.models import Product
 from users.models import User
